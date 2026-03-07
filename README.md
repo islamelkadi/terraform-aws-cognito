@@ -14,16 +14,13 @@ This module provides a complete Cognito authentication solution with four sub-mo
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
-- [Security Controls](#security-controls)
+- [Security](#security)
 - [Features](#features)
-- [Architecture](#architecture)
-- [Quick Start](#quick-start)
-- [Module Documentation](#module-documentation)
-- [Common Use Cases](#common-use-cases)
-- [Best Practices](#best-practices)
+- [Usage](#usage)
 - [Requirements](#requirements)
+- [MCP Servers](#mcp-servers)
+- [License](#license)
 
----
 
 ## Prerequisites
 
@@ -40,7 +37,11 @@ make bootstrap
 
 This will install/upgrade: tfenv, Terraform (via tfenv), tflint, terraform-docs, checkov, and pre-commit.
 
-## Security Controls
+
+
+## Security
+
+### Security Controls
 
 This module implements security controls to comply with:
 - AWS Foundational Security Best Practices (FSBP)
@@ -77,6 +78,36 @@ This module implements security controls to comply with:
 
 For complete security standards and implementation details, see [AWS Security Standards](../../../.kiro/steering/aws/aws-security-standards.md).
 
+### Environment-Based Security Controls
+
+Security controls are automatically applied based on the environment through the [terraform-aws-metadata](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles){:target="_blank"} module's security profiles:
+
+| Control | Dev | Staging | Prod |
+|---------|-----|---------|------|
+| Password policy (CIS) | Relaxed | CIS-compliant (14+ chars) | CIS-compliant (14+ chars) |
+| MFA | OFF | OPTIONAL | OPTIONAL/ON |
+| Advanced security mode | AUDIT | ENFORCED | ENFORCED |
+| Deletion protection | Disabled | Enabled | Enabled |
+| Token revocation | Optional | Enabled | Enabled |
+
+For full details on security profiles and how controls vary by environment, see the <a href="https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles" target="_blank">Security Profiles</a> documentation.
+
+### Security Best Practices
+
+**Production User Pools:**
+- Enable MFA (at least OPTIONAL mode)
+- Use CIS-compliant password policy (14+ chars)
+- Enable advanced security mode (ENFORCED)
+- Enable deletion protection
+- Configure account recovery mechanisms
+- Use custom domains for better branding and security
+
+**Development User Pools:**
+- Relaxed password policies acceptable with justification
+- MFA optional for testing
+- Deletion protection can be disabled
+
+For complete security standards and implementation details, see [AWS Security Standards](../../../.kiro/steering/aws/aws-security-standards.md).
 ## Features
 
 - **CIS Benchmark Compliant**: Password policies and security controls meet CIS AWS Foundations Benchmark
@@ -704,19 +735,6 @@ MIT Licensed. See LICENSE for full details.
 - [CIS AWS Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services)
 - [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
 
-## Environment-Based Security Controls
-
-Security controls are automatically applied based on the environment through the [terraform-aws-metadata](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles){:target="_blank"} module's security profiles:
-
-| Control | Dev | Staging | Prod |
-|---------|-----|---------|------|
-| Password policy (CIS) | Relaxed | CIS-compliant (14+ chars) | CIS-compliant (14+ chars) |
-| MFA | OFF | OPTIONAL | OPTIONAL/ON |
-| Advanced security mode | AUDIT | ENFORCED | ENFORCED |
-| Deletion protection | Disabled | Enabled | Enabled |
-| Token revocation | Optional | Enabled | Enabled |
-
-For full details on security profiles and how controls vary by environment, see the <a href="https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles" target="_blank">Security Profiles</a> documentation.
 
 ## MCP Servers
 
