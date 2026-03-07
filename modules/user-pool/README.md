@@ -14,8 +14,6 @@ This module creates an AWS Cognito User Pool with security best practices and CI
 - **Deletion Protection**: Prevent accidental deletion of user pools
 - **Security Controls**: Extensible override system with audit justification
 
-
-
 ## Security
 
 ### Environment-Based Security Controls
@@ -29,10 +27,8 @@ Security controls are automatically applied based on the environment through the
 | Advanced security mode | AUDIT | ENFORCED | ENFORCED |
 | Deletion protection | Disabled | Enabled | Enabled |
 
-For full details on security profiles and how controls vary by environment, see the <a href="https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles" target="_blank">Security Profiles</a> documentation.
-## Security
+For full details on security profiles and how controls vary by environment, see the [Security Profiles](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles) documentation.
 
-#
 ## Usage
 
 ### Basic Example
@@ -401,7 +397,6 @@ resource "aws_api_gateway_method" "protected" {
 8. **Password Policy**: Follow CIS Benchmark (14+ chars, complexity) for security
 
 <!-- BEGIN_TF_DOCS -->
-
 
 ## Usage
 

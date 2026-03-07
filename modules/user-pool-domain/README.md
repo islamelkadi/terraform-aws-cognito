@@ -10,8 +10,6 @@ This module creates an AWS Cognito User Pool Domain for the Cognito Hosted UI. I
 - **Standardized Naming**: Integration with metadata module for consistent resource naming
 - **Validation**: Input validation for domain formats and required parameters
 
-
-
 ## Security
 
 ### Environment-Based Security Controls
@@ -24,10 +22,8 @@ Security controls are automatically applied based on the environment through the
 | HTTPS enforcement | Required | Required | Required |
 | CloudFront distribution | Optional | Recommended | Required |
 
-For full details on security profiles and how controls vary by environment, see the <a href="https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles" target="_blank">Security Profiles</a> documentation.
-## Security
+For full details on security profiles and how controls vary by environment, see the [Security Profiles](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles) documentation.
 
-#
 ## Usage
 
 ### Basic Example - Cognito Domain Prefix
@@ -203,7 +199,6 @@ If you receive an error that the domain prefix is already taken:
 - Domain resources don't support tags directly (limitation of AWS Cognito)
 
 <!-- BEGIN_TF_DOCS -->
-
 
 ## Usage
 

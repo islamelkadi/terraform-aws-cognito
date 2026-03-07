@@ -11,6 +11,40 @@ This module creates an AWS Cognito User Pool Client for application integration 
 - **Attribute Control**: Configurable read/write permissions for user attributes
 - **Security Controls**: Extensible override system with audit justification
 
+## Security
+
+### Security Controls
+
+This module enforces security controls from the metadata module:
+
+- **Token Revocation**: Enabled by default (can be overridden with justification)
+- **User Existence Errors**: Prevention enabled by default
+- **HTTPS Enforcement**: Required for production callback/logout URLs
+- **Token Validity Limits**: Enforced reasonable token lifetimes
+- **OAuth Flow Restrictions**: Implicit flow discouraged in production
+
+### Overriding Security Controls
+
+When you need to disable security controls (e.g., for development), provide justification:
+
+```hcl
+security_control_overrides = {
+  disable_token_revocation = true
+  justification            = "Development environment - simplified testing"
+}
+```
+
+### Environment-Based Security Controls
+
+Security controls are automatically applied based on the environment through the [terraform-aws-metadata](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles) module's security profiles:
+
+| Control | Dev | Staging | Prod |
+|---------|-----|---------|------|
+| Token revocation | Optional | Enabled | Enabled |
+| HTTPS callback URLs | Recommended | Required | Required |
+| PKCE for public clients | Recommended | Required | Required |
+
+For full details on security profiles and how controls vary by environment, see the [Security Profiles](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles) documentation.
 ## Usage
 
 ### Basic Example
@@ -251,27 +285,6 @@ generate_secret = true
 7. **Limit Scopes**: Only request necessary OAuth scopes
 8. **Control Attributes**: Restrict read/write permissions to required attributes
 
-## Security Controls
-
-This module enforces security controls from the metadata module:
-
-- **Token Revocation**: Enabled by default (can be overridden with justification)
-- **User Existence Errors**: Prevention enabled by default
-- **HTTPS Enforcement**: Required for production callback/logout URLs
-- **Token Validity Limits**: Enforced reasonable token lifetimes
-- **OAuth Flow Restrictions**: Implicit flow discouraged in production
-
-### Overriding Security Controls
-
-When you need to disable security controls (e.g., for development), provide justification:
-
-```hcl
-security_control_overrides = {
-  disable_token_revocation = true
-  justification            = "Development environment - simplified testing"
-}
-```
-
 ## Integration with User Pool
 
 This module requires an existing Cognito User Pool. Use with the user-pool module:
@@ -290,10 +303,6 @@ module "user_pool_client" {
 }
 ```
 
-## License
-
-Apache 2.0 Licensed. See LICENSE for full details.
-
 ## References
 
 - [AWS Cognito User Pool Clients](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-client-apps.html)
@@ -301,20 +310,7 @@ Apache 2.0 Licensed. See LICENSE for full details.
 - [OpenID Connect](https://openid.net/connect/)
 - [PKCE for OAuth Public Clients](https://oauth.net/2/pkce/)
 
-## Environment-Based Security Controls
-
-Security controls are automatically applied based on the environment through the [terraform-aws-metadata](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles){:target="_blank"} module's security profiles:
-
-| Control | Dev | Staging | Prod |
-|---------|-----|---------|------|
-| Token revocation | Optional | Enabled | Enabled |
-| HTTPS callback URLs | Recommended | Required | Required |
-| PKCE for public clients | Recommended | Required | Required |
-
-For full details on security profiles and how controls vary by environment, see the <a href="https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles" target="_blank">Security Profiles</a> documentation.
-
 <!-- BEGIN_TF_DOCS -->
-
 
 ## Usage
 
@@ -437,7 +433,3 @@ module "user_pool_client" {
 
 See [example/](example/) for a complete working example with all features.
 
-## License
-
-MIT Licensed. See [LICENSE](LICENSE) for full details.
-<!-- END_TF_DOCS -->
