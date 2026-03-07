@@ -30,7 +30,7 @@ For full details on security profiles and how controls vary by environment, see 
 
 ```hcl
 module "user_pool_domain" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-domain"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-domain"
 
   namespace   = "example"
   environment = "prod"
@@ -49,7 +49,7 @@ module "user_pool_domain" {
 
 ```hcl
 module "user_pool_domain" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-domain"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-domain"
 
   namespace   = "example"
   environment = "prod"
@@ -115,7 +115,7 @@ resource "aws_acm_certificate" "auth" {
 
 # Cognito User Pool
 module "user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-domain"
 
   namespace   = "example"
   environment = "prod"
@@ -126,7 +126,7 @@ module "user_pool" {
 
 # Cognito User Pool Domain
 module "user_pool_domain" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-domain"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-domain"
 
   namespace   = "example"
   environment = "prod"
@@ -212,7 +212,7 @@ If you receive an error that the domain prefix is already taken:
 # ============================================================================
 
 module "user_pool_domain" {
-  source = "../"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-domain"
 
   namespace   = var.namespace
   environment = var.environment

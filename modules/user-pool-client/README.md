@@ -51,7 +51,7 @@ For full details on security profiles and how controls vary by environment, see 
 
 ```hcl
 module "user_pool_client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-client"
 
   namespace   = "example"
   environment = "prod"
@@ -73,7 +73,7 @@ module "user_pool_client" {
 
 ```hcl
 module "server_app_client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-client"
 
   namespace   = "example"
   environment = "prod"
@@ -108,7 +108,7 @@ module "server_app_client" {
 
 ```hcl
 module "spa_client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-client"
 
   namespace   = "example"
   environment = "dev"
@@ -155,7 +155,7 @@ module "spa_client" {
 
 ```hcl
 module "m2m_client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-client"
 
   namespace   = "example"
   environment = "prod"
@@ -184,7 +184,7 @@ module "m2m_client" {
 
 ```hcl
 module "custom_attrs_client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-client"
 
   namespace   = "example"
   environment = "prod"
@@ -221,7 +221,7 @@ module "custom_attrs_client" {
 
 ```hcl
 module "dev_client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-client"
 
   namespace   = "example"
   environment = "dev"
@@ -291,12 +291,12 @@ This module requires an existing Cognito User Pool. Use with the user-pool modul
 
 ```hcl
 module "user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-client"
   # ... user pool configuration
 }
 
 module "user_pool_client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-client"
 
   user_pool_id = module.user_pool.user_pool_id
   # ... client configuration
@@ -319,7 +319,7 @@ module "user_pool_client" {
 # Demonstrates client configuration for web applications
 
 module "user_pool_client" {
-  source = "../"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-client"
 
   namespace   = var.namespace
   environment = var.environment

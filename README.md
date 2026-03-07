@@ -178,8 +178,7 @@ For complete security standards and implementation details, see [AWS Security St
 ```hcl
 # 1. Create User Pool
 module "user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
-
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   namespace   = "example"
   environment = "prod"
   name        = "corporate-actions"
@@ -205,8 +204,7 @@ module "user_pool" {
 
 # 2. Create User Pool Client
 module "user_pool_client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
-
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   namespace   = "example"
   environment = "prod"
   name        = "web-app"
@@ -224,8 +222,7 @@ module "user_pool_client" {
 
 # 3. Create User Pool Domain (Optional - for Hosted UI)
 module "user_pool_domain" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-domain"
-
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   namespace   = "example"
   environment = "prod"
   name        = "corporate-actions"
@@ -240,8 +237,7 @@ module "user_pool_domain" {
 
 # 4. Create Identity Pool (Optional - for AWS credentials)
 module "identity_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/identity-pool"
-
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   namespace   = "example"
   environment = "prod"
   name        = "corporate-actions"
@@ -281,23 +277,20 @@ Each sub-module has comprehensive documentation:
 ```hcl
 # User Pool with MFA
 module "user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   mfa_configuration = "ON"
 }
 
 # Web App Client
 module "web_client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   oauth_flows = ["code"]
   generate_secret = false  # Public client (SPA)
 }
 
 # Custom Domain for Hosted UI
 module "domain" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-domain"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   use_custom_domain = true
   custom_domain     = "auth.example.com"
   certificate_arn   = aws_acm_certificate.auth.arn
@@ -309,14 +302,12 @@ module "domain" {
 ```hcl
 # User Pool
 module "user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
 }
 
 # M2M Client
 module "m2m_client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   generate_secret = true
   oauth_flows     = ["client_credentials"]
   oauth_scopes    = ["aws.cognito.signin.user.admin"]
@@ -328,14 +319,12 @@ module "m2m_client" {
 ```hcl
 # User Pool
 module "user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
 }
 
 # Mobile App Client
 module "mobile_client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   oauth_flows = ["code"]
   explicit_auth_flows = [
     "ALLOW_USER_SRP_AUTH",
@@ -345,8 +334,7 @@ module "mobile_client" {
 
 # Identity Pool with Social Providers
 module "identity_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/identity-pool"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   supported_login_providers = {
     "accounts.google.com" = var.google_client_id
     "graph.facebook.com"  = var.facebook_app_id
@@ -359,8 +347,7 @@ module "identity_pool" {
 ```hcl
 # User Pool with relaxed security for demo
 module "demo_user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   
   password_policy = {
     minimum_length    = 8
@@ -437,8 +424,7 @@ Most secure flow for web and mobile applications.
 
 ```hcl
 module "client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   
   oauth_flows     = ["code"]
   generate_secret = true  # For server-side apps
@@ -460,8 +446,7 @@ Legacy flow for SPAs. Use authorization code with PKCE instead.
 
 ```hcl
 module "client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   
   oauth_flows     = ["implicit"]
   generate_secret = false
@@ -474,8 +459,7 @@ For machine-to-machine authentication without user context.
 
 ```hcl
 module "client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   
   oauth_flows     = ["client_credentials"]
   generate_secret = true
@@ -494,8 +478,7 @@ module "client" {
 
 ```hcl
 module "user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   
   # MFA options: OFF, OPTIONAL, ON
   mfa_configuration = "OPTIONAL"  # Users can enable MFA
@@ -556,8 +539,7 @@ password_policy = {
 
 ```hcl
 module "user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   
   # Threat detection and risk-based authentication
   advanced_security_mode = "ENFORCED"  # AUDIT or ENFORCED
@@ -571,8 +553,7 @@ module "user_pool" {
 
 ```hcl
 module "user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   
   # Prevent accidental deletion
   enable_deletion_protection = true  # Recommended for production
@@ -583,8 +564,7 @@ module "user_pool" {
 
 ```hcl
 module "user_pool_client" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool-client"
-  # ... configuration
+  source = "github.com/islamelkadi/terraform-aws-cognito"
   
   # Enable token revocation
   enable_token_revocation = true

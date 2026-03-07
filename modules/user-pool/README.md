@@ -35,7 +35,7 @@ For full details on security profiles and how controls vary by environment, see 
 
 ```hcl
 module "user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool"
 
   namespace   = "example"
   environment = "prod"
@@ -69,7 +69,7 @@ module "user_pool" {
 
 ```hcl
 module "user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool"
 
   namespace   = "example"
   environment = "prod"
@@ -184,7 +184,7 @@ module "user_pool" {
 
 ```hcl
 module "demo_user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool"
 
   namespace   = "example"
   environment = "dev"
@@ -363,7 +363,7 @@ To use this user pool with API Gateway:
 ```hcl
 # Create user pool
 module "user_pool" {
-  source = "../../modules/terraform-aws-cognito/modules/user-pool"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool"
   # ... configuration
 }
 
@@ -405,7 +405,7 @@ resource "aws_api_gateway_method" "protected" {
 # Demonstrates user pool configuration with security best practices
 
 module "user_pool" {
-  source = "../"
+  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool"
 
   namespace   = var.namespace
   environment = var.environment
