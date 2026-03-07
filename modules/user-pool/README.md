@@ -14,6 +14,25 @@ This module creates an AWS Cognito User Pool with security best practices and CI
 - **Deletion Protection**: Prevent accidental deletion of user pools
 - **Security Controls**: Extensible override system with audit justification
 
+
+
+## Security
+
+### Environment-Based Security Controls
+
+Security controls are automatically applied based on the environment through the [terraform-aws-metadata](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles) module's security profiles:
+
+| Control | Dev | Staging | Prod |
+|---------|-----|---------|------|
+| Password policy (CIS) | Relaxed | CIS-compliant (14+ chars) | CIS-compliant (14+ chars) |
+| MFA | OFF | OPTIONAL | OPTIONAL/ON |
+| Advanced security mode | AUDIT | ENFORCED | ENFORCED |
+| Deletion protection | Disabled | Enabled | Enabled |
+
+For full details on security profiles and how controls vary by environment, see the <a href="https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles" target="_blank">Security Profiles</a> documentation.
+## Security
+
+#
 ## Usage
 
 ### Basic Example
@@ -381,23 +400,6 @@ resource "aws_api_gateway_method" "protected" {
 7. **Account Recovery**: Configure multiple recovery mechanisms for better user experience
 8. **Password Policy**: Follow CIS Benchmark (14+ chars, complexity) for security
 
-## License
-
-Apache 2.0 Licensed. See LICENSE for full details.
-
-## Environment-Based Security Controls
-
-Security controls are automatically applied based on the environment through the [terraform-aws-metadata](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles){:target="_blank"} module's security profiles:
-
-| Control | Dev | Staging | Prod |
-|---------|-----|---------|------|
-| Password policy (CIS) | Relaxed | CIS-compliant (14+ chars) | CIS-compliant (14+ chars) |
-| MFA | OFF | OPTIONAL | OPTIONAL/ON |
-| Advanced security mode | AUDIT | ENFORCED | ENFORCED |
-| Deletion protection | Disabled | Enabled | Enabled |
-
-For full details on security profiles and how controls vary by environment, see the <a href="https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles" target="_blank">Security Profiles</a> documentation.
-
 <!-- BEGIN_TF_DOCS -->
 
 
@@ -544,7 +546,3 @@ module "user_pool" {
 
 See [example/](example/) for a complete working example with all features.
 
-## License
-
-MIT Licensed. See [LICENSE](LICENSE) for full details.
-<!-- END_TF_DOCS -->

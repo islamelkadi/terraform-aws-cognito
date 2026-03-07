@@ -10,6 +10,24 @@ This module creates an AWS Cognito User Pool Domain for the Cognito Hosted UI. I
 - **Standardized Naming**: Integration with metadata module for consistent resource naming
 - **Validation**: Input validation for domain formats and required parameters
 
+
+
+## Security
+
+### Environment-Based Security Controls
+
+Security controls are automatically applied based on the environment through the [terraform-aws-metadata](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles) module's security profiles:
+
+| Control | Dev | Staging | Prod |
+|---------|-----|---------|------|
+| Custom domain with ACM | Optional | Recommended | Required |
+| HTTPS enforcement | Required | Required | Required |
+| CloudFront distribution | Optional | Recommended | Required |
+
+For full details on security profiles and how controls vary by environment, see the <a href="https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles" target="_blank">Security Profiles</a> documentation.
+## Security
+
+#
 ## Usage
 
 ### Basic Example - Cognito Domain Prefix
@@ -184,22 +202,6 @@ If you receive an error that the domain prefix is already taken:
 - All traffic is encrypted in transit
 - Domain resources don't support tags directly (limitation of AWS Cognito)
 
-## License
-
-Apache 2.0 Licensed. See LICENSE for full details.
-
-## Environment-Based Security Controls
-
-Security controls are automatically applied based on the environment through the [terraform-aws-metadata](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles){:target="_blank"} module's security profiles:
-
-| Control | Dev | Staging | Prod |
-|---------|-----|---------|------|
-| Custom domain with ACM | Optional | Recommended | Required |
-| HTTPS enforcement | Required | Required | Required |
-| CloudFront distribution | Optional | Recommended | Required |
-
-For full details on security profiles and how controls vary by environment, see the <a href="https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles" target="_blank">Security Profiles</a> documentation.
-
 <!-- BEGIN_TF_DOCS -->
 
 
@@ -295,7 +297,3 @@ module "user_pool_domain" {
 
 See [example/](example/) for a complete working example with all features.
 
-## License
-
-MIT Licensed. See [LICENSE](LICENSE) for full details.
-<!-- END_TF_DOCS -->
