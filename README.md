@@ -88,22 +88,6 @@ Security controls are automatically applied based on the environment through the
 
 For full details on security profiles and how controls vary by environment, see the [Security Profiles](https://github.com/islamelkadi/terraform-aws-metadata?tab=readme-ov-file#security-profiles) documentation.
 
-### Security Best Practices
-
-**Production User Pools:**
-- Enable MFA (at least OPTIONAL mode)
-- Use CIS-compliant password policy (14+ chars)
-- Enable advanced security mode (ENFORCED)
-- Enable deletion protection
-- Configure account recovery mechanisms
-- Use custom domains for better branding and security
-
-**Development User Pools:**
-- Relaxed password policies acceptable with justification
-- MFA optional for testing
-- Deletion protection can be disabled
-
-For complete security standards and implementation details, see [AWS Security Standards](../../../.kiro/steering/aws/aws-security-standards.md).
 ## Features
 
 - **CIS Benchmark Compliant**: Password policies and security controls meet CIS AWS Foundations Benchmark
