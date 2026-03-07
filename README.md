@@ -19,7 +19,6 @@ This module provides a complete Cognito authentication solution with four sub-mo
 - [Usage](#usage)
 - [Requirements](#requirements)
 - [MCP Servers](#mcp-servers)
-- [License](#license)
 
 
 ## Prerequisites
@@ -723,10 +722,6 @@ Each module includes a comprehensive example:
 | terraform | >= 1.14.3 |
 | aws | >= 6.34 |
 
-## License
-
-MIT Licensed. See LICENSE for full details.
-
 ## References
 
 - [AWS Cognito Documentation](https://docs.aws.amazon.com/cognito/)
@@ -777,7 +772,3 @@ No inputs.
 
 No outputs.
 
-## License
-
-MIT Licensed. See [LICENSE](LICENSE) for full details.
-<!-- END_TF_DOCS -->
