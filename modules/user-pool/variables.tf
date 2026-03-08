@@ -284,3 +284,92 @@ variable "enable_deletion_protection" {
   type        = bool
   default     = true
 }
+
+# Security Controls
+variable "security_controls" {
+  description = "Security controls configuration from metadata module. Used to enforce security standards"
+  type = object({
+    encryption = object({
+      require_kms_customer_managed  = bool
+      require_encryption_at_rest    = bool
+      require_encryption_in_transit = bool
+      enable_kms_key_rotation       = bool
+    })
+    logging = object({
+      require_cloudwatch_logs = bool
+      min_log_retention_days  = number
+      require_access_logging  = bool
+      require_flow_logs       = bool
+    })
+    network = object({
+      require_private_subnets = bool
+      require_vpc_endpoints   = bool
+      block_public_ingress    = bool
+      require_imdsv2          = bool
+    })
+    iam = object({
+      enforce_least_privilege  = bool
+      block_wildcard_resources = bool
+      require_mfa_for_humans   = bool
+      require_service_roles    = bool
+    })
+    data_protection = object({
+      require_versioning         = bool
+      require_mfa_delete         = bool
+      require_automated_backups  = bool
+      block_public_access        = bool
+      require_lifecycle_policies = bool
+    })
+    monitoring = object({
+      enable_xray_tracing         = bool
+      enable_enhanced_monitoring  = bool
+      enable_performance_insights = bool
+      require_cloudtrail          = bool
+    })
+    high_availability = object({
+      require_multi_az           = bool
+      require_multi_az_nat       = bool
+      enable_cross_region_backup = bool
+    })
+    compliance = object({
+      enable_point_in_time_recovery = bool
+      require_reserved_concurrency  = bool
+      enable_deletion_protection    = bool
+    })
+  })
+  default = null
+}
+
+# Security Control Overrides
+variable "security_control_overrides" {
+  description = <<-EOT
+    Override specific security controls for this Cognito User Pool.
+    Only use when there's a documented business justification.
+
+    Example use cases:
+    - disable_deletion_protection: Dev/test user pools that are disposable
+    - disable_advanced_security: Cost optimization in non-production
+    - disable_mfa_requirement: Demo environments with simplified auth
+    - disable_password_complexity: Testing environments with simplified passwords
+
+    IMPORTANT: Document the reason in the 'justification' field for audit purposes.
+  EOT
+
+  type = object({
+    disable_deletion_protection = optional(bool, false)
+    disable_advanced_security   = optional(bool, false)
+    disable_mfa_requirement     = optional(bool, false)
+    disable_password_complexity = optional(bool, false)
+
+    # Audit trail - document why controls are disabled
+    justification = optional(string, "")
+  })
+
+  default = {
+    disable_deletion_protection = false
+    disable_advanced_security   = false
+    disable_mfa_requirement     = false
+    disable_password_complexity = false
+    justification               = ""
+  }
+}
