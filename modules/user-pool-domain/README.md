@@ -200,6 +200,7 @@ If you receive an error that the domain prefix is already taken:
 
 <!-- BEGIN_TF_DOCS -->
 
+
 ## Usage
 
 ```hcl
@@ -212,7 +213,7 @@ If you receive an error that the domain prefix is already taken:
 # ============================================================================
 
 module "user_pool_domain" {
-  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-domain"
+  source = "../"
 
   namespace   = var.namespace
   environment = var.environment
@@ -250,7 +251,7 @@ module "user_pool_domain" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_metadata"></a> [metadata](#module\_metadata) | github.com/islamelkadi/terraform-aws-metadata | v1.1.0 |
+| <a name="module_metadata"></a> [metadata](#module\_metadata) | github.com/islamelkadi/terraform-aws-metadata | v1.0.0 |
 
 ## Resources
 
@@ -292,3 +293,7 @@ module "user_pool_domain" {
 
 See [example/](example/) for a complete working example with all features.
 
+## License
+
+MIT Licensed. See [LICENSE](LICENSE) for full details.
+<!-- END_TF_DOCS -->

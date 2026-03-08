@@ -312,6 +312,7 @@ module "user_pool_client" {
 
 <!-- BEGIN_TF_DOCS -->
 
+
 ## Usage
 
 ```hcl
@@ -319,7 +320,7 @@ module "user_pool_client" {
 # Demonstrates client configuration for web applications
 
 module "user_pool_client" {
-  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool-client"
+  source = "../"
 
   namespace   = var.namespace
   environment = var.environment
@@ -377,7 +378,7 @@ module "user_pool_client" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_metadata"></a> [metadata](#module\_metadata) | github.com/islamelkadi/terraform-aws-metadata | v1.1.0 |
+| <a name="module_metadata"></a> [metadata](#module\_metadata) | github.com/islamelkadi/terraform-aws-metadata | v1.0.0 |
 
 ## Resources
 
@@ -433,3 +434,7 @@ module "user_pool_client" {
 
 See [example/](example/) for a complete working example with all features.
 
+## License
+
+MIT Licensed. See [LICENSE](LICENSE) for full details.
+<!-- END_TF_DOCS -->

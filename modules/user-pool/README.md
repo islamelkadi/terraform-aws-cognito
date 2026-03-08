@@ -398,6 +398,7 @@ resource "aws_api_gateway_method" "protected" {
 
 <!-- BEGIN_TF_DOCS -->
 
+
 ## Usage
 
 ```hcl
@@ -405,7 +406,7 @@ resource "aws_api_gateway_method" "protected" {
 # Demonstrates user pool configuration with security best practices
 
 module "user_pool" {
-  source = "github.com/islamelkadi/terraform-aws-cognito//modules/user-pool"
+  source = "../"
 
   namespace   = var.namespace
   environment = var.environment
@@ -485,7 +486,7 @@ module "user_pool" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_metadata"></a> [metadata](#module\_metadata) | github.com/islamelkadi/terraform-aws-metadata | v1.1.0 |
+| <a name="module_metadata"></a> [metadata](#module\_metadata) | github.com/islamelkadi/terraform-aws-metadata | v1.0.0 |
 
 ## Resources
 
@@ -515,8 +516,6 @@ module "user_pool" {
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace (organization/team name) | `string` | n/a | yes |
 | <a name="input_password_policy"></a> [password\_policy](#input\_password\_policy) | Password policy configuration for the user pool | <pre>object({<br/>    minimum_length                   = number<br/>    require_lowercase                = bool<br/>    require_uppercase                = bool<br/>    require_numbers                  = bool<br/>    require_symbols                  = bool<br/>    temporary_password_validity_days = number<br/>  })</pre> | <pre>{<br/>  "minimum_length": 14,<br/>  "require_lowercase": true,<br/>  "require_numbers": true,<br/>  "require_symbols": true,<br/>  "require_uppercase": true,<br/>  "temporary_password_validity_days": 7<br/>}</pre> | no |
 | <a name="input_region"></a> [region](#input\_region) | AWS region where resources will be created | `string` | n/a | yes |
-| <a name="input_security_control_overrides"></a> [security\_control\_overrides](#input\_security\_control\_overrides) | Override specific security controls for this Cognito User Pool.<br/>Only use when there's a documented business justification.<br/><br/>Example use cases:<br/>- disable\_deletion\_protection: Development/testing user pools<br/>- disable\_advanced\_security: Cost optimization for non-production environments<br/>- disable\_mfa\_requirement: Demo environments with simplified authentication<br/><br/>IMPORTANT: Document the reason in the 'justification' field for audit purposes. | <pre>object({<br/>    disable_deletion_protection = optional(bool, false)<br/>    disable_advanced_security   = optional(bool, false)<br/>    disable_mfa_requirement     = optional(bool, false)<br/>    disable_password_complexity = optional(bool, false)<br/><br/>    # Audit trail - document why controls are disabled<br/>    justification = optional(string, "")<br/>  })</pre> | <pre>{<br/>  "disable_advanced_security": false,<br/>  "disable_deletion_protection": false,<br/>  "disable_mfa_requirement": false,<br/>  "disable_password_complexity": false,<br/>  "justification": ""<br/>}</pre> | no |
-| <a name="input_security_controls"></a> [security\_controls](#input\_security\_controls) | Security controls configuration from metadata module. Used to enforce security standards | <pre>object({<br/>    encryption = object({<br/>      require_kms_customer_managed  = bool<br/>      require_encryption_at_rest    = bool<br/>      require_encryption_in_transit = bool<br/>      enable_kms_key_rotation       = bool<br/>    })<br/>    logging = object({<br/>      require_cloudwatch_logs = bool<br/>      min_log_retention_days  = number<br/>      require_access_logging  = bool<br/>      require_flow_logs       = bool<br/>    })<br/>    network = object({<br/>      require_private_subnets = bool<br/>      require_vpc_endpoints   = bool<br/>      block_public_ingress    = bool<br/>      require_imdsv2          = bool<br/>    })<br/>    iam = object({<br/>      enforce_least_privilege  = bool<br/>      block_wildcard_resources = bool<br/>      require_mfa_for_humans   = bool<br/>      require_service_roles    = bool<br/>    })<br/>    data_protection = object({<br/>      require_versioning         = bool<br/>      require_mfa_delete         = bool<br/>      require_automated_backups  = bool<br/>      block_public_access        = bool<br/>      require_lifecycle_policies = bool<br/>    })<br/>    monitoring = object({<br/>      enable_xray_tracing         = bool<br/>      enable_enhanced_monitoring  = bool<br/>      enable_performance_insights = bool<br/>      require_cloudtrail          = bool<br/>    })<br/>    high_availability = object({<br/>      require_multi_az           = bool<br/>      require_multi_az_nat       = bool<br/>      enable_cross_region_backup = bool<br/>    })<br/>    compliance = object({<br/>      enable_point_in_time_recovery = bool<br/>      require_reserved_concurrency  = bool<br/>      enable_deletion_protection    = bool<br/>    })<br/>  })</pre> | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Additional tags to apply to resources | `map(string)` | `{}` | no |
 | <a name="input_user_attributes"></a> [user\_attributes](#input\_user\_attributes) | User attribute schema configuration (email, name, custom attributes) | <pre>list(object({<br/>    name                     = string<br/>    attribute_data_type      = string<br/>    developer_only_attribute = optional(bool, false)<br/>    mutable                  = optional(bool, true)<br/>    required                 = optional(bool, false)<br/>    min_length               = optional(number)<br/>    max_length               = optional(number)<br/>    min_value                = optional(number)<br/>    max_value                = optional(number)<br/>  }))</pre> | `[]` | no |
 | <a name="input_username_attributes"></a> [username\_attributes](#input\_username\_attributes) | Attributes that can be used as username (email, phone\_number) | `list(string)` | <pre>[<br/>  "email"<br/>]</pre> | no |
@@ -541,3 +540,7 @@ module "user_pool" {
 
 See [example/](example/) for a complete working example with all features.
 
+## License
+
+MIT Licensed. See [LICENSE](LICENSE) for full details.
+<!-- END_TF_DOCS -->

@@ -704,12 +704,10 @@ Both servers run via `uvx` and require no additional installation beyond the [bo
 
 <!-- BEGIN_TF_DOCS -->
 
+
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.14.3 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.34 |
+No requirements.
 
 ## Providers
 
@@ -731,3 +729,7 @@ No inputs.
 
 No outputs.
 
+## License
+
+MIT Licensed. See [LICENSE](LICENSE) for full details.
+<!-- END_TF_DOCS -->
