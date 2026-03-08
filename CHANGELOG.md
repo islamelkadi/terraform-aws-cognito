@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/islamelkadi/terraform-aws-cognito/compare/v1.0.1...v1.0.2) (2026-03-08)
+
+
+### Documentation
+
+* add GitHub Actions workflow status badges ([5bd32d7](https://github.com/islamelkadi/terraform-aws-cognito/commit/5bd32d7c3580ac82396b5ea002aa1d99bc2f3485))
+* add security scan suppressions section to README ([e6bacc1](https://github.com/islamelkadi/terraform-aws-cognito/commit/e6bacc1190054f3165ec6c72c0e4b4aafe4eb8b2))
+
 ## [1.0.1](https://github.com/islamelkadi/terraform-aws-cognito/compare/v1.0.0...v1.0.1) (2026-03-08)
 
 
