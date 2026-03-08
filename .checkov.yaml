@@ -5,3 +5,7 @@ skip-check:
   # Cognito Identity Pool - Unauthenticated access may be intentional for public apps
   - id: CKV_AWS_366
     comment: "Unauthenticated guest access is use-case specific. Some applications require public access. Users should disable if not needed."
+  
+  # Terraform Module Sources - Using semantic versioning tags (commit hash)
+  - id: CKV_TF_1
+    comment: "Using semantic version tags (?ref=v1.0.0) instead of commit hashes for better maintainability and readability."
