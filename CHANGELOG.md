@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/islamelkadi/terraform-aws-cognito/compare/v1.0.2...v1.0.3) (2026-03-08)
+
+
+### Bug Fixes
+
+* add missing security related variables ([7c099b7](https://github.com/islamelkadi/terraform-aws-cognito/commit/7c099b79f07c83c8d97d6f32c90f8a287f159ea9))
+
 ## [1.0.2](https://github.com/islamelkadi/terraform-aws-cognito/compare/v1.0.1...v1.0.2) (2026-03-08)
 
 
