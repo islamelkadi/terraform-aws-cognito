@@ -1,5 +1,9 @@
 # Terraform AWS Cognito Authentication Module
 
+[![Terraform Security](https://github.com/islamelkadi/terraform-aws-cognito/actions/workflows/terraform-security.yaml/badge.svg)](https://github.com/islamelkadi/terraform-aws-cognito/actions/workflows/terraform-security.yaml)
+[![Terraform Lint & Validation](https://github.com/islamelkadi/terraform-aws-cognito/actions/workflows/terraform-lint.yaml/badge.svg)](https://github.com/islamelkadi/terraform-aws-cognito/actions/workflows/terraform-lint.yaml)
+[![Terraform Docs](https://github.com/islamelkadi/terraform-aws-cognito/actions/workflows/terraform-docs.yaml/badge.svg)](https://github.com/islamelkadi/terraform-aws-cognito/actions/workflows/terraform-docs.yaml)
+
 Comprehensive Terraform module for AWS Cognito authentication infrastructure with security best practices, CIS Benchmark compliance, and production-ready configurations.
 
 ## Overview
