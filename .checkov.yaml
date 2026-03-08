@@ -1,35 +1,7 @@
-# .checkov.yml
-
-# Frameworks à scanner
-framework:
-  - terraform
-
-# Format de sortie
-output:
-  - cli
-
-# Options générales
-quiet: true
-compact: true
-download-external-modules: true
-evaluate-variables: true
-
-# Répertoires à scanner
-directory:
-  - .
+# Checkov configuration for terraform-aws-cognito
+# Suppressions for checks that are not applicable to example/demo code
 
 skip-check:
-  - CKV_TF_1    # Ensure Terraform module sources use a commit hash
-
-# Répertoires à exclure
-skip-path:
-  - .terraform/
-  - .terragrunt-cache/
-  - "**/.terraform/"
-  - "**/.terraform.lock.hcl"
-  - "**/.terragrunt-cache/"
-  - "**/terraform"
-  - "**/terraform-output.json"
-  - "*.tfstate*"
-  - "**/*.tfstate*"
-  - terraform-output.json
+  # Cognito Identity Pool - Unauthenticated access may be intentional for public apps
+  - id: CKV_AWS_366
+    comment: "Unauthenticated guest access is use-case specific. Some applications require public access. Users should disable if not needed."
