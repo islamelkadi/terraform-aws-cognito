@@ -1,3 +1,15 @@
+## [1.0.1](https://github.com/islamelkadi/terraform-aws-cognito/compare/v1.0.0...v1.0.1) (2026-03-08)
+
+
+### Bug Fixes
+
+* add CKV_TF_1 suppression for external module metadata ([b82f55c](https://github.com/islamelkadi/terraform-aws-cognito/commit/b82f55cab6df0070984ec4158890efd7a4ecb46e))
+* add skip-path for .external_modules in Checkov config ([072fd7a](https://github.com/islamelkadi/terraform-aws-cognito/commit/072fd7a367d9c030bcc3213e60d27bfa9ea41c28))
+* address Checkov security findings ([45fe0cc](https://github.com/islamelkadi/terraform-aws-cognito/commit/45fe0cc5100e74555f26190669a3ee1d26336b91))
+* correct .checkov.yaml format to use simple list instead of id/comment dict ([14d7b17](https://github.com/islamelkadi/terraform-aws-cognito/commit/14d7b17817014076190255b878e59be10991dcb6))
+* remove skip-path from .checkov.yaml, rely on workflow-level skip_path ([8ecf6ed](https://github.com/islamelkadi/terraform-aws-cognito/commit/8ecf6edc7abd41122fc9a11efe167ff962cb0ce8))
+* update workflow path reference to terraform-security.yaml ([c6f616f](https://github.com/islamelkadi/terraform-aws-cognito/commit/c6f616f5db7cf987a6cfbe6806ce1588c43bb331))
+
 ## 1.0.0 (2026-03-07)
 
 
