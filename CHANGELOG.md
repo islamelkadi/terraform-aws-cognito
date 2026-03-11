@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/islamelkadi/terraform-aws-cognito/compare/v1.0.3...v1.1.0) (2026-03-11)
+
+
+### Features
+
+* add manual triggering to release workflow ([db21f09](https://github.com/islamelkadi/terraform-aws-cognito/commit/db21f09b232f7ae0b3974cfb2332b4246cce8d18))
+
 ## [1.0.3](https://github.com/islamelkadi/terraform-aws-cognito/compare/v1.0.2...v1.0.3) (2026-03-08)
 
 
